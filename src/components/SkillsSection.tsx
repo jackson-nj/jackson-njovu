@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import { cn } from "@/lib/utils";
 import { useInView } from "../hooks/use-in-view";
-import { Javascript, Python, Git, Supabase, Figma, Database, Networking, UserIcon, Backend } from "lucide-react";
+import { Code, FileCode, GitBranch, Database, Network, MonitorSmartphone, BrainCircuit, Code2, Laptop } from "lucide-react";
 
 interface SkillCategoryProps {
   title: string;
@@ -48,31 +48,31 @@ const SkillsSection = () => {
     {
       title: "Languages",
       skills: [
-        { name: "JavaScript", icon: Javascript },
-        { name: "Python", icon: Python },
+        { name: "JavaScript", icon: Code },
+        { name: "Python", icon: FileCode },
       ],
     },
     {
       title: "Tools",
       skills: [
-        { name: "Git", icon: Git },
-        { name: "Supabase", icon: Supabase },
-        { name: "Figma", icon: Figma },
+        { name: "Git", icon: GitBranch },
+        { name: "Databases", icon: Database },
+        { name: "Figma", icon: Code2 },
       ],
     },
     {
       title: "Concepts",
       skills: [
         { name: "Databases", icon: Database },
-        { name: "Networking", icon: Networking },
-        { name: "OS", icon: UserIcon },
+        { name: "Networking", icon: Network },
+        { name: "OS", icon: Laptop },
       ],
     },
     {
       title: "Learning Now",
       skills: [
-        { name: "AI", icon: UserIcon },
-        { name: "Backend", icon: Backend },
+        { name: "AI", icon: BrainCircuit },
+        { name: "Backend", icon: MonitorSmartphone },
       ],
     },
   ];

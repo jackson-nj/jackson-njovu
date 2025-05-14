@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
+import { cn } from "@/lib/utils"; // Added the missing import
 import NavBar from "@/components/NavBar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";

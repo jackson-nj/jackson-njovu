@@ -266,7 +266,9 @@ const HeroSection = () => {
           transform: `translateY(${-scrollY * 0.2}px)`, 
           transition: 'transform 0.05s linear',
           opacity: isLoading ? 0 : 1,
-          transition: 'opacity 0.5s ease-in-out'
+          transitionProperty: 'opacity',
+          transitionDuration: '0.5s',
+          transitionTimingFunction: 'ease-in-out'
         }}
       >
         <div className="space-y-4">

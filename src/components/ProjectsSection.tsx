@@ -5,6 +5,7 @@ import { useInView } from "../hooks/use-in-view";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ArrowRight } from "lucide-react";
 
 interface ProjectCardProps {
   title: string;
@@ -17,8 +18,8 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ title, description, tags, delay, isInView, imageSrc }: ProjectCardProps) => (
   <Card className={cn(
-    "bg-card border-white/5 hover:border-primary/50 transition-all duration-300 h-full flex flex-col",
-    "hover:shadow-[0_0_25px_rgba(99,102,241,0.1)] group",
+    "bg-card border-white/5 hover:border-primary/50 transition-all duration-500 h-full flex flex-col",
+    "hover:shadow-[0_0_25px_rgba(0,245,255,0.15)] group shine",
     isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
   )}
     style={{ transitionDelay: `${150 * delay}ms` }}
@@ -26,9 +27,9 @@ const ProjectCard = ({ title, description, tags, delay, isInView, imageSrc }: Pr
     {imageSrc && (
       <div className="relative overflow-hidden">
         <AspectRatio ratio={16/9} className="bg-muted border-b border-white/5">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
           <div 
-            className="w-full h-full bg-center bg-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full bg-center bg-cover group-hover:scale-105 transition-transform duration-700"
             style={{ backgroundImage: `url(${imageSrc})` }}
           ></div>
         </AspectRatio>
@@ -37,10 +38,7 @@ const ProjectCard = ({ title, description, tags, delay, isInView, imageSrc }: Pr
     <CardHeader>
       <CardTitle className="text-xl group-hover:text-primary transition-colors flex items-center">
         {title}
-        <svg className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M7 17L17 7" />
-          <path d="M7 7h10v10" />
-        </svg>
+        <ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-1" />
       </CardTitle>
     </CardHeader>
     <CardContent className="flex-grow">
@@ -49,7 +47,7 @@ const ProjectCard = ({ title, description, tags, delay, isInView, imageSrc }: Pr
     <CardFooter>
       <div className="flex flex-wrap gap-2">
         {tags.map((tag, index) => (
-          <Badge key={index} variant="outline" className="bg-muted text-foreground/80">
+          <Badge key={index} variant="outline" className="bg-muted text-foreground/80 group-hover:border-primary/30 transition-colors duration-300">
             {tag}
           </Badge>
         ))}
@@ -105,14 +103,17 @@ const ProjectsSection = () => {
     <section 
       id="projects" 
       ref={sectionRef}
-      className="section-padding py-24"
+      className={cn(
+        "section-padding py-24 bg-gradient-to-b from-background/80 via-background to-background/90 section-transition",
+        isInView && "in-view"
+      )}
     >
       <div className="container max-w-5xl">
         <h2 className={cn(
-          "text-3xl md:text-4xl font-bold tracking-tight mb-12 transition-all duration-500",
-          isInView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+          "text-3xl md:text-5xl font-bold tracking-tight mb-12 transition-all duration-500 relative",
+          isInView ? "mask-reveal" : ""
         )}>
-          My <span className="text-primary">Projects</span>
+          My <span className="text-primary glow-text">Projects</span>
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -129,6 +130,10 @@ const ProjectsSection = () => {
           ))}
         </div>
       </div>
+
+      {/* Background decorative elements */}
+      <div className="absolute top-1/4 right-0 w-1/3 h-1/3 bg-accent/5 blur-3xl rounded-full opacity-20"></div>
+      <div className="absolute bottom-1/4 left-0 w-1/4 h-1/4 bg-primary/5 blur-3xl rounded-full opacity-20"></div>
     </section>
   );
 };

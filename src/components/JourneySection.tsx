@@ -21,7 +21,7 @@ const TimelineItem = ({ title, year, description, icon, delay, isInView }: Timel
   >
     <div className="relative mr-8">
       {/* Timeline dot */}
-      <div className="absolute w-6 h-6 bg-primary rounded-full -left-3 mt-1 flex items-center justify-center z-10 animate-glow">
+      <div className="absolute w-6 h-6 bg-primary rounded-full -left-3 mt-1 flex items-center justify-center z-10 glow-border">
         <span className="text-sm">{icon}</span>
       </div>
       {/* Timeline year badge */}
@@ -79,14 +79,17 @@ const JourneySection = () => {
     <section 
       id="journey" 
       ref={sectionRef} 
-      className="section-padding min-h-screen py-24 relative flex items-center"
+      className={cn(
+        "section-padding min-h-screen py-24 relative flex items-center bg-gradient-to-b from-background via-background/95 to-background section-transition",
+        isInView && "in-view"
+      )}
     >
       <div className="container max-w-5xl">
         <h2 className={cn(
-          "text-3xl md:text-4xl font-bold tracking-tight mb-16 transition-all duration-700",
-          isInView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+          "text-3xl md:text-5xl font-bold tracking-tight mb-16 transition-all duration-700 relative",
+          isInView ? "mask-reveal" : ""
         )}>
-          My <span className="text-primary">Journey</span>
+          My <span className="text-primary glow-text">Journey</span>
         </h2>
         
         <div className="ml-8 md:ml-24 relative">
@@ -111,6 +114,10 @@ const JourneySection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Background decorative elements */}
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-primary/5 blur-3xl rounded-full opacity-30"></div>
+      <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-accent/5 blur-3xl rounded-full opacity-30"></div>
     </section>
   );
 };

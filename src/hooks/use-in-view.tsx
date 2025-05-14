@@ -6,6 +6,7 @@ interface UseInViewOptions {
   rootMargin?: string;
   threshold?: number | number[];
   once?: boolean;
+  delay?: number;
 }
 
 export function useInView(
@@ -13,7 +14,7 @@ export function useInView(
   options: UseInViewOptions = {}
 ): boolean {
   const [isInView, setIsInView] = useState(false);
-  const { root = null, rootMargin = '0px', threshold = 0, once = false } = options;
+  const { root = null, rootMargin = '0px', threshold = 0, once = false, delay = 0 } = options;
 
   useEffect(() => {
     if (!ref.current) return;
@@ -21,7 +22,13 @@ export function useInView(
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsInView(true);
+          if (delay) {
+            setTimeout(() => {
+              setIsInView(true);
+            }, delay);
+          } else {
+            setIsInView(true);
+          }
           
           if (once && ref.current) {
             observer.unobserve(ref.current);
@@ -40,7 +47,7 @@ export function useInView(
         observer.unobserve(ref.current);
       }
     };
-  }, [ref, root, rootMargin, threshold, once]);
+  }, [ref, root, rootMargin, threshold, once, delay]);
 
   return isInView;
 }

@@ -29,7 +29,9 @@ const SkillCategory = ({ title, skills, delay, isInView }: SkillCategoryProps) =
           <div 
             key={index} 
             className="flex flex-col items-center p-4 rounded-lg border border-white/10 
-                     hover:border-primary/40 transition-colors bg-muted/30 hover:bg-muted/50"
+                     hover:border-primary/40 transition-all duration-500 bg-muted/30 hover:bg-muted/50
+                     transform hover:scale-105 hover:shadow-[0_0_15px_rgba(0,245,255,0.15)]"
+            style={{ transitionDelay: `${index * 50}ms` }}
           >
             <Icon className="h-8 w-8 mb-2 text-primary" />
             <span className="text-sm text-foreground/80">{skill.name}</span>
@@ -81,17 +83,20 @@ const SkillsSection = () => {
     <section 
       id="skills" 
       ref={sectionRef}
-      className="section-padding py-24 bg-gradient-to-b from-background to-muted/20"
+      className={cn(
+        "section-padding py-24 bg-gradient-to-b from-background to-muted/20 section-transition",
+        isInView && "in-view"
+      )}
     >
       <div className="container max-w-5xl">
         <h2 className={cn(
-          "text-3xl md:text-4xl font-bold tracking-tight mb-12 transition-all duration-500",
-          isInView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+          "text-3xl md:text-5xl font-bold tracking-tight mb-12 transition-all duration-500 relative",
+          isInView ? "mask-reveal" : ""
         )}>
-          My <span className="text-primary">Skills</span>
+          My <span className="text-primary glow-text">Skills</span>
         </h2>
         
-        <div className="space-y-12">
+        <div className="space-y-16">
           {skillCategories.map((category, index) => (
             <SkillCategory 
               key={category.title}
@@ -103,6 +108,10 @@ const SkillsSection = () => {
           ))}
         </div>
       </div>
+      
+      {/* Background decorative elements */}
+      <div className="absolute top-1/3 right-0 w-1/4 h-1/4 bg-primary/5 blur-3xl rounded-full opacity-20"></div>
+      <div className="absolute bottom-1/3 left-0 w-1/3 h-1/3 bg-accent/5 blur-3xl rounded-full opacity-20"></div>
     </section>
   );
 };

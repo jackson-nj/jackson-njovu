@@ -5,29 +5,29 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 222 47% 13%;
-    --card-foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 252 87% 67%;
+    --primary: 186 95% 50%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 217 91% 60%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 223 47% 20%;
+    --muted: 223 47% 15%;
     --muted-foreground: 215 20% 75%;
 
-    --accent: 186 95% 50%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 252 87% 67%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 214.3 31.8% 20%;
     --input: 214.3 31.8% 20%;
@@ -55,23 +55,23 @@
 
 @layer utilities {
   .glow-text {
-    text-shadow: 0 0 5px theme('colors.primary.DEFAULT'), 0 0 20px rgba(99, 102, 241, 0.5);
+    text-shadow: 0 0 10px theme('colors.primary.DEFAULT'), 0 0 30px rgba(0, 245, 255, 0.5);
   }
 
   .glow-border {
-    box-shadow: 0 0 5px theme('colors.primary.DEFAULT'), 0 0 20px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 0 10px theme('colors.primary.DEFAULT'), 0 0 30px rgba(0, 245, 255, 0.3);
   }
 
   .section-padding {
-    @apply py-20 px-6 md:px-12;
+    @apply py-24 md:py-32 px-6 md:px-12;
   }
   
   .glass-panel {
-    @apply backdrop-blur-md bg-white/5 border border-white/10 rounded-lg;
+    @apply backdrop-blur-lg bg-white/5 border border-white/10 rounded-lg hover:border-primary/30 transition-all duration-300;
   }
 
   .timeline-connector {
-    @apply absolute h-full w-0.5 bg-gradient-to-b from-primary/40 via-primary to-primary/40 left-8 top-8;
+    @apply absolute h-full w-0.5 bg-gradient-to-b from-transparent via-primary to-transparent left-8 top-8;
   }
   
   .shine {
@@ -103,5 +103,73 @@
     20%, 100% {
       transform: translateX(100%) rotate(30deg);
     }
+  }
+
+  .parallax {
+    transition: transform 0.1s cubic-bezier(0.2, 0, 0.8, 1);
+  }
+
+  .mask-reveal {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    animation: mask-reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  }
+
+  @keyframes mask-reveal {
+    from {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    to {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+
+  .section-transition {
+    @apply relative;
+  }
+  
+  .section-transition::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 transition-opacity duration-700;
+  }
+  
+  .section-transition.in-view::before {
+    @apply opacity-100;
+  }
+
+  .stagger-animation > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .stagger-animation.in-view > *:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+  }
+
+  .stagger-animation.in-view > *:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+
+  .stagger-animation.in-view > *:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+  }
+
+  .stagger-animation.in-view > *:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+  }
+
+  .stagger-animation.in-view > *:nth-child(5) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
   }
 }

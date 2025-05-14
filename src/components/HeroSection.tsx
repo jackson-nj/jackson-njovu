@@ -1,8 +1,7 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, buttonVariants, textAnimationVariants } from "@/lib/utils";
 
 const HeroSection = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -261,7 +260,7 @@ const HeroSection = () => {
       {/* Main content with parallax effect */}
       <div 
         ref={containerRef} 
-        className="container max-w-5xl z-30 px-6" 
+        className="container max-w-5xl z-30 px-6 flex flex-col items-center justify-center md:items-start" 
         style={{ 
           transform: `translateY(${-scrollY * 0.2}px)`, 
           transition: 'transform 0.05s linear',
@@ -271,12 +270,12 @@ const HeroSection = () => {
           transitionTimingFunction: 'ease-in-out'
         }}
       >
-        <div className="space-y-4">
+        <div className="space-y-6 text-center md:text-left max-w-full">
           <h1 className={getAnimationClass(0)}>
-            <span className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4">
+            <span className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 inline-flex items-center">
               <span className="text-foreground/90">Jack</span>
-              <span className="glow-text text-primary"> Beker</span>
-              <span className="inline-block ml-2 align-middle animate-pulse">
+              <span className={cn("text-primary glow-text animate-float-subtle", textAnimationVariants.glow)}> Beker</span>
+              <span className="inline-block ml-2 align-middle transform animate-pulse">
                 <ArrowRight size={32} className="text-primary/70" />
               </span>
             </span>
@@ -290,14 +289,30 @@ const HeroSection = () => {
             Exploring systems, AI, and building tools for the future
           </p>
           <div className={getAnimationClass(3)}>
-            <div className="flex flex-wrap gap-4 pt-8">
-              <Button className="rounded-full group shine" size="lg" asChild>
-                <a href="#projects">
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-8">
+              <Button 
+                className={cn(
+                  "rounded-full group relative overflow-hidden button-pop", 
+                  buttonVariants.shine,
+                  buttonVariants.glow
+                )} 
+                size="lg" 
+                asChild
+              >
+                <a href="#projects" className="flex items-center">
                   See My Work
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
-              <Button variant="outline" className="rounded-full shine" size="lg" asChild>
+              <Button 
+                variant="outline" 
+                className={cn(
+                  "rounded-full relative overflow-hidden button-pop border-primary/30",
+                  buttonVariants.float
+                )} 
+                size="lg" 
+                asChild
+              >
                 <a href="#contact">Let's Connect</a>
               </Button>
             </div>

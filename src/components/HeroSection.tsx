@@ -112,16 +112,20 @@ const HeroSection = () => {
       
       <div className="container max-w-5xl z-10">
         <div className="space-y-6 delay-75 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter">
-            Hey, I'm <span className="glow-text text-primary">Jack</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter">
+            <span className="text-foreground/90">Jack</span>
+            <span className="glow-text text-primary"> Beker</span>
+            <span className="inline-block ml-2 align-middle">
+              <ArrowRight size={32} className="text-primary/70" />
+            </span>
           </h1>
-          <h2 className="text-xl md:text-2xl text-muted-foreground tracking-tight font-light">
+          <h2 className="text-xl md:text-2xl text-muted-foreground tracking-tight font-light mt-2">
             CS student · CSO at Instay Homes
           </h2>
           <p className="max-w-md text-lg text-foreground/70">
             Exploring systems, AI, and building tools for the future
           </p>
-          <div className="flex flex-wrap gap-4 pt-4">
+          <div className="flex flex-wrap gap-4 pt-6">
             <Button className="rounded-full group" size="lg" asChild>
               <a href="#projects">
                 See My Work
@@ -132,6 +136,13 @@ const HeroSection = () => {
               <a href="#contact">Let's Connect</a>
             </Button>
           </div>
+        </div>
+      </div>
+      
+      <div className="absolute top-4 right-4 md:top-8 md:right-8 z-10">
+        <div className="text-sm text-muted-foreground font-mono animate-fade-in space-y-2 text-right opacity-60">
+          <p>/* Working with me was</p>
+          <p className="text-primary">a game changer */</p>
         </div>
       </div>
       

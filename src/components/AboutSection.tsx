@@ -1,8 +1,8 @@
-
 import React, { useRef } from 'react';
 import { cn } from "@/lib/utils";
 import { useInView } from "../hooks/use-in-view";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import myPhoto from './img/WhatsApp Image 2025-05-10 at 16.07.35_501bc0d8.jpg';
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -18,10 +18,14 @@ const AboutSection = () => {
       )}
     >
       <div className="container max-w-5xl">
-        <h2 className={cn(
-          "text-3xl md:text-5xl font-bold tracking-tight mb-12 relative",
-          isInView ? "mask-reveal" : ""
-        )}>
+        <h2
+          className={cn(
+            "text-3xl md:text-5xl font-bold tracking-tight mb-12 relative",
+            isInView ? "glitch" : "",
+            isInView ? "mask-reveal" : ""
+          )}
+          data-text="About Me"
+        >
           About <span className="text-primary glow-text">Me</span>
         </h2>
         
@@ -33,7 +37,7 @@ const AboutSection = () => {
             <div className="aspect-square relative overflow-hidden rounded-xl glass-panel p-1 glow-border">
               {/* Profile image with better styling */}
               <Avatar className="w-full h-full rounded-lg">
-                <AvatarImage src="/placeholder.svg" alt="Jack" className="object-cover" />
+                <AvatarImage src={myPhoto} alt="Jack" className="object-cover" />
                 <AvatarFallback className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 animate-glow flex items-center justify-center">
                   <div className="text-5xl font-bold text-primary glow-text">
                     J
@@ -64,7 +68,7 @@ const AboutSection = () => {
             isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
           )}>
             <p className="text-lg text-foreground/90 leading-relaxed">
-              I'm Jack, a Computer Science student and CSO at Instay Homes. I'm exploring system design, 
+              I'm Jackson njovu, a Computer Science student and CSO at Instay Homes. I'm exploring system design, 
               databases, AI, and automation. My mission is to build tech that matters — from housing 
               to human potential.
             </p>

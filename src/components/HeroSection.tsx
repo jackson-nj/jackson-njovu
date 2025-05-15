@@ -127,8 +127,8 @@ const HeroSection = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Draw grid lines for depth effect
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
-      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = 'rgba(0, 245, 255, 0.15)'; // Increased opacity and color for visibility
+      ctx.lineWidth = 1; // Make grid lines thicker
       const gridSize = 50;
       
       for (let x = 0; x < canvas.width; x += gridSize) {
@@ -147,8 +147,8 @@ const HeroSection = () => {
       
       // Draw liquid wave effect
       ctx.beginPath();
-      ctx.strokeStyle = 'rgba(0, 245, 255, 0.1)';
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = 'rgba(0, 245, 255, 0.5)'; // Increased opacity for the wave
+      ctx.lineWidth = 3; // Make the wave thicker
       
       for (let x = 0; x < canvas.width; x += 5) {
         const y = Math.sin(x * 0.01 + time) * 20 + canvas.height / 2;
@@ -273,8 +273,8 @@ const HeroSection = () => {
         <div className="space-y-6 text-center md:text-left max-w-full">
           <h1 className={getAnimationClass(0)}>
             <span className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 inline-flex items-center">
-              <span className="text-foreground/90">Jack</span>
-              <span className={cn("text-primary glow-text animate-float-subtle", textAnimationVariants.glow)}> Beker</span>
+              <span className="text-foreground/90">Jackson</span>
+              <span className={cn("text-primary glow-text animate-float-subtle", textAnimationVariants.glow)}> Njovu</span>
               <span className="inline-block ml-2 align-middle transform animate-pulse">
                 <ArrowRight size={32} className="text-primary/70" />
               </span>
@@ -282,7 +282,7 @@ const HeroSection = () => {
           </h1>
           <h2 className={getAnimationClass(1)}>
             <span className="text-xl md:text-2xl text-muted-foreground tracking-tight font-light mt-2">
-              CS student · CSO at Instay Homes
+              Computer Science major · CSO at Instay Homes
             </span>
           </h2>
           <p className={cn(getAnimationClass(2), "max-w-md text-lg text-foreground/70 mt-6")}>
@@ -322,8 +322,7 @@ const HeroSection = () => {
       
       <div className="absolute top-4 right-4 md:top-8 md:right-8 z-30">
         <div className="text-sm text-muted-foreground font-mono space-y-2 text-right opacity-60">
-          <p className={cn(getAnimationClass(1))}>/* Working with me was</p>
-          <p className={cn(getAnimationClass(2), "text-primary")}>a game changer */</p>
+          
         </div>
       </div>
       

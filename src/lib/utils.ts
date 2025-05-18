@@ -42,20 +42,20 @@ export function distance3D(p1: {x: number, y: number, z: number}, p2: {x: number
 }
 
 /**
- * Button animation variants
+ * Enhanced button animation variants
  */
 export const buttonVariants = {
-  shine: "shine relative overflow-hidden after:absolute after:inset-0 after:translate-x-[-100%] after:bg-white/25 after:transition after:duration-500 hover:after:translate-x-[100%]",
-  glow: "hover:shadow-[0_0_15px_rgba(0,245,255,0.5)] transition-shadow duration-300",
-  float: "hover:translate-y-[-3px] transition-transform duration-300",
+  shine: "shine relative overflow-hidden after:absolute after:inset-0 after:translate-x-[-100%] after:bg-white/30 after:transition after:duration-500 hover:after:translate-x-[100%]",
+  glow: "hover:shadow-[0_0_20px_rgba(0,245,255,0.6)] transition-shadow duration-300",
+  float: "hover:translate-y-[-4px] transition-transform duration-300",
   pop: "active:scale-95 transition-transform duration-200"
 };
 
 /**
- * Text animation variants
+ * Enhanced text animation variants
  */
 export const textAnimationVariants = {
-  glow: "hover:text-shadow-[0_0_15px_rgba(0,245,255,0.8)] transition-all duration-300",
-  float: "hover:translate-y-[-2px] transition-transform duration-300",
+  glow: "hover:text-shadow-[0_0_20px_rgba(0,245,255,0.9)] transition-all duration-300",
+  float: "hover:translate-y-[-3px] transition-transform duration-300",
   type: "overflow-hidden whitespace-nowrap border-r-4 border-primary animate-typing"
 };

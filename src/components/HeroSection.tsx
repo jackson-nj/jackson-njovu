@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -41,7 +40,7 @@ const HeroSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Enhanced hyper-realistic constellation animation
+  // Enhanced hyper-realistic constellation animation with improved visibility
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -67,21 +66,21 @@ const HeroSection = () => {
         this.y = Math.random() * canvas.height;
         this.z = Math.random() * 200 - 100;
         
-        // Visual properties
-        this.size = Math.random() * 2 + (1 - (this.z + 100) / 200); // Larger stars in foreground
+        // Visual properties - increased size for better visibility
+        this.size = Math.random() * 3 + (1.5 - (this.z + 100) / 200); // Larger stars for better visibility
         this.twinkleSpeed = Math.random() * 0.05 + 0.01;
         this.twinkleOffset = Math.random() * Math.PI * 2;
         
-        // Color and brightness
-        this.maxBrightness = Math.random() * 0.5 + 0.5;
+        // Color and brightness - increased brightness
+        this.maxBrightness = Math.random() * 0.5 + 0.6; // Increased minimum brightness
         this.brightness = this.maxBrightness;
         
-        const hue = Math.random() > 0.8 
-          ? Math.floor(Math.random() * 60) + 180 // Cyan/blue hues
+        const hue = Math.random() > 0.7 
+          ? Math.floor(Math.random() * 60) + 180 // More cyan/blue hues
           : Math.floor(Math.random() * 30); // White/slightly yellow
           
-        const saturation = Math.random() * 30 + 70;
-        this.color = `hsla(${hue}, ${saturation}%, 80%, 1)`;
+        const saturation = Math.random() * 40 + 80; // Increased saturation
+        this.color = `hsla(${hue}, ${saturation}%, 85%, 1)`; // Brighter stars
       }
       
       update(time: number) {
@@ -102,31 +101,31 @@ const HeroSection = () => {
       draw() {
         if (!ctx) return;
         
-        // Create a glow effect
+        // Create a stronger glow effect
         const gradient = ctx.createRadialGradient(
           this.x, this.y, 0,
-          this.x, this.y, this.size * 4
+          this.x, this.y, this.size * 5 // Increased glow radius
         );
         
-        const alpha = this.brightness * (1 - (this.z + 100) / 200);
+        const alpha = this.brightness * (1 - (this.z + 100) / 200) * 1.2; // Increased alpha for better visibility
         gradient.addColorStop(0, this.color.replace('1)', `${alpha})`));
         gradient.addColorStop(1, this.color.replace('1)', '0)'));
         
         // Draw the star glow
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.size * 5, 0, Math.PI * 2);
         ctx.fill();
         
-        // Draw the star core
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.brightness * 0.8})`;
+        // Draw the star core with brighter center
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.brightness * 0.9})`; // Brighter core
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
       }
     }
     
-    // Constellation class
+    // Constellation class with improved visibility
     class Constellation {
       stars: Star[];
       connections: {p1: number, p2: number, strength: number}[];
@@ -135,7 +134,7 @@ const HeroSection = () => {
       constructor(starCount: number) {
         this.stars = [];
         this.connections = [];
-        this.maxDistance = 150;
+        this.maxDistance = 180; // Increased connection distance
         
         // Create stars
         for (let i = 0; i < starCount; i++) {
@@ -195,11 +194,11 @@ const HeroSection = () => {
           );
           
           const baseColor = 'rgba(0, 245, 255,';
-          gradient.addColorStop(0, `${baseColor} ${star1.brightness * conn.strength * 0.5})`);
-          gradient.addColorStop(1, `${baseColor} ${star2.brightness * conn.strength * 0.5})`);
+          gradient.addColorStop(0, `${baseColor} ${star1.brightness * conn.strength * 0.7})`); // Increased visibility of connections
+          gradient.addColorStop(1, `${baseColor} ${star2.brightness * conn.strength * 0.7})`);
           
           ctx.strokeStyle = gradient;
-          ctx.lineWidth = conn.strength * 0.8;
+          ctx.lineWidth = conn.strength * 1.2; // Thicker lines for better visibility
           ctx.beginPath();
           ctx.moveTo(star1.x, star1.y);
           ctx.lineTo(star2.x, star2.y);
@@ -211,7 +210,7 @@ const HeroSection = () => {
       }
     }
     
-    // 3D Nebula effect
+    // 3D Nebula effect with improved visibility
     class Nebula {
       points: {x: number, y: number, z: number, radius: number, color: string, opacity: number, speed: number}[];
       count: number;
@@ -225,43 +224,44 @@ const HeroSection = () => {
           // Create clusters of points for more realistic nebula shapes
           const clusterCenterX = Math.random() * canvas.width;
           const clusterCenterY = Math.random() * canvas.height;
-          const clusterRadius = Math.random() * 200 + 100;
+          const clusterRadius = Math.random() * 200 + 150; // Larger clusters for better visibility
           
           // Random angle and distance from cluster center
           const angle = Math.random() * Math.PI * 2;
-          const distance = Math.pow(Math.random(), 2) * clusterRadius; // Squared for denser center
+          const distance = Math.pow(Math.random(), 2) * clusterRadius;
           
           const x = clusterCenterX + Math.cos(angle) * distance;
           const y = clusterCenterY + Math.sin(angle) * distance;
           const z = Math.random() * 300 - 150;
           
-          // Determine color - blue/purple/cyan nebulae
+          // More vibrant colors for better visibility
           let color;
           const colorType = Math.random();
           if (colorType < 0.33) {
-            // Blue/cyan nebula
-            color = `rgba(0, ${Math.floor(Math.random() * 150 + 100)}, 255,`;
+            // Bright blue/cyan nebula
+            color = `rgba(40, ${Math.floor(Math.random() * 150 + 150)}, 255,`; // Brighter blues
           } else if (colorType < 0.66) {
-            // Purple nebula
-            color = `rgba(${Math.floor(Math.random() * 100 + 100)}, 0, ${Math.floor(Math.random() * 150 + 100)},`;
+            // Vibrant purple nebula
+            color = `rgba(${Math.floor(Math.random() * 100 + 150)}, 40, ${Math.floor(Math.random() * 150 + 150)},`; // More vibrant purples
           } else {
-            // Cyan nebula
-            color = `rgba(0, ${Math.floor(Math.random() * 150 + 100)}, ${Math.floor(Math.random() * 150 + 100)},`;
+            // Bright cyan nebula
+            color = `rgba(40, ${Math.floor(Math.random() * 150 + 150)}, ${Math.floor(Math.random() * 150 + 150)},`; // Brighter cyans
           }
           
           this.points.push({
             x,
             y, 
             z,
-            radius: Math.random() * 60 + 20,
+            radius: Math.random() * 80 + 40, // Larger nebula clouds
             color,
-            opacity: Math.random() * 0.2 + 0.1,
+            opacity: Math.random() * 0.3 + 0.15, // Increased opacity for better visibility
             speed: Math.random() * 0.01 + 0.005
           });
         }
       }
       
       update(time: number) {
+        // Subtle movement
         this.points.forEach(point => {
           // Subtle movement
           point.x += Math.sin(time * point.speed) * 0.1;
@@ -281,7 +281,7 @@ const HeroSection = () => {
             point.x, point.y, point.radius
           );
           
-          gradient.addColorStop(0, `${point.color}${point.opacity})`);
+          gradient.addColorStop(0, `${point.color}${point.opacity * 1.2})`); // Increased visibility
           gradient.addColorStop(1, `${point.color}0)`);
           
           ctx.fillStyle = gradient;
@@ -302,9 +302,9 @@ const HeroSection = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     
-    // Create constellation and nebula
-    const constellation = new Constellation(150); // 150 stars
-    const nebula = new Nebula(8); // 8 nebula clouds
+    // Create constellation and nebula with more elements for better visibility
+    const constellation = new Constellation(200); // More stars (was 150)
+    const nebula = new Nebula(12); // More nebula clouds (was 8)
     
     let time = 0;
     
@@ -315,17 +315,17 @@ const HeroSection = () => {
       
       time += 0.005;
       
-      // Draw grid background for tech feel
-      ctx.strokeStyle = 'rgba(0, 245, 255, 0.15)';
-      ctx.lineWidth = 0.5;
+      // Draw grid background for tech feel with improved visibility
+      ctx.strokeStyle = 'rgba(0, 245, 255, 0.2)'; // Increased grid visibility
+      ctx.lineWidth = 0.7; // Slightly thicker grid lines
       
       // Draw grid with perspective
       const gridSize = 80;
-      const gridDepth = 3; // Number of depth layers
+      const gridDepth = 3;
       
       for (let depth = 0; depth < gridDepth; depth++) {
-        const scale = 1 + depth * 0.5; // Scale grid based on depth
-        const opacity = 0.15 / (depth + 1); // Fade with depth
+        const scale = 1 + depth * 0.5;
+        const opacity = 0.2 / (depth + 1); // Increased grid opacity
         
         ctx.strokeStyle = `rgba(0, 245, 255, ${opacity})`;
         
@@ -354,13 +354,13 @@ const HeroSection = () => {
       constellation.update(time);
       constellation.draw();
       
-      // Draw digital noise/dust particles for texture
-      for (let i = 0; i < 200; i++) {
+      // Draw digital noise/dust particles for texture with improved visibility
+      for (let i = 0; i < 250; i++) { // More particles
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
-        const size = Math.random() * 1.5;
+        const size = Math.random() * 1.8; // Slightly larger particles
         
-        ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.2})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.25})`; // Increased particle visibility
         ctx.fillRect(x, y, size, size);
       }
       

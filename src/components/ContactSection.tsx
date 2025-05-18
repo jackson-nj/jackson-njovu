@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import { cn } from "@/lib/utils";
 import { useInView } from "../hooks/use-in-view";
-import { Github, Linkedin, X, Phone, Instagram, Facebook } from "lucide-react";
+import { Github, Instagram, Facebook, Phone } from "lucide-react";
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);

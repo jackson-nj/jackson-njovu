@@ -1,3 +1,4 @@
+
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -16,6 +17,28 @@ export function formatDate(input: Date | string): string {
     day: "numeric",
     year: "numeric",
   })
+}
+
+/**
+ * Creates a random point in 3D space
+ */
+export function randomPoint3D(width: number, height: number, depth: number = 200): {x: number, y: number, z: number} {
+  return {
+    x: Math.random() * width,
+    y: Math.random() * height,
+    z: Math.random() * depth - depth/2
+  };
+}
+
+/**
+ * Calculates distance between two 3D points
+ */
+export function distance3D(p1: {x: number, y: number, z: number}, p2: {x: number, y: number, z: number}): number {
+  return Math.sqrt(
+    Math.pow(p2.x - p1.x, 2) + 
+    Math.pow(p2.y - p1.y, 2) + 
+    Math.pow(p2.z - p1.z, 2)
+  );
 }
 
 /**

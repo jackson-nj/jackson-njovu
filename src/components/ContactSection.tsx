@@ -50,12 +50,20 @@ const ContactSection = () => {
           
           <div className="flex items-center justify-center gap-3 mb-4">
             <Phone className="h-5 w-5 text-primary" />
-            <a href="tel:+260977502711" className="text-primary hover:text-primary/80 text-lg font-medium inline-block hover:glow-text transition-all duration-300">
+            <a 
+              href="tel:+260977502711" 
+              className="text-primary hover:text-primary/80 text-lg font-medium inline-block hover:glow-text transition-all duration-300"
+              aria-label="Call +260 977502711"
+            >
               +260 977502711
             </a>
           </div>
           
-          <a href="mailto:jack@instay.com" className="text-primary hover:text-primary/80 text-lg font-medium inline-block mb-8 hover:glow-text transition-all duration-300">
+          <a 
+            href="mailto:jack@instay.com" 
+            className="text-primary hover:text-primary/80 text-lg font-medium inline-block mb-8 hover:glow-text transition-all duration-300"
+            aria-label="Email jack@instay.com"
+          >
             jack@instay.com
           </a>
           
@@ -70,7 +78,7 @@ const ContactSection = () => {
                   rel="noopener noreferrer"
                   className="p-4 rounded-full bg-muted/20 text-foreground/70 hover:text-primary hover:bg-muted/40 transition-all duration-300
                             hover:shadow-[0_0_15px_rgba(0,245,255,0.2)] transform hover:scale-110"
-                  aria-label={link.name}
+                  aria-label={`Visit ${link.name} profile`}
                 >
                   <Icon className="h-5 w-5" />
                 </a>

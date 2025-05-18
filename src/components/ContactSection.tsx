@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import { cn } from "@/lib/utils";
 import { useInView } from "../hooks/use-in-view";
-import { Github, Instagram, Facebook, Phone, Mail } from "lucide-react";
+import { Github, Linkedin, X, Phone, Instagram, Facebook } from "lucide-react";
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,19 +13,16 @@ const ContactSection = () => {
       name: "GitHub",
       icon: Github,
       url: "https://github.com/jackson-nj",
-      ariaLabel: "Visit Jackson's GitHub profile"
     },
     {
       name: "Instagram",
       icon: Instagram,
       url: "https://www.instagram.com/jackson_nj5?igsh=YzljYTk1ODg3Zg==",
-      ariaLabel: "Visit Jackson's Instagram profile"
     },
     {
       name: "Facebook",
       icon: Facebook,
       url: "https://www.facebook.com/profile.php?id=100086003796045",
-      ariaLabel: "Visit Jackson's Facebook profile"
     },
   ];
 
@@ -53,25 +50,14 @@ const ContactSection = () => {
           
           <div className="flex items-center justify-center gap-3 mb-4">
             <Phone className="h-5 w-5 text-primary" />
-            <a 
-              href="tel:+260977502711" 
-              className="text-primary hover:text-primary/80 text-lg font-medium inline-block hover:glow-text transition-all duration-300"
-              aria-label="Call Jackson at +260 977502711"
-            >
+            <a href="tel:+260977502711" className="text-primary hover:text-primary/80 text-lg font-medium inline-block hover:glow-text transition-all duration-300">
               +260 977502711
             </a>
           </div>
           
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <Mail className="h-5 w-5 text-primary" />
-            <a 
-              href="mailto:jack@instay.com" 
-              className="text-primary hover:text-primary/80 text-lg font-medium inline-block hover:glow-text transition-all duration-300"
-              aria-label="Email Jackson at jack@instay.com"
-            >
-              jack@instay.com
-            </a>
-          </div>
+          <a href="mailto:jack@instay.com" className="text-primary hover:text-primary/80 text-lg font-medium inline-block mb-8 hover:glow-text transition-all duration-300">
+            jack@instay.com
+          </a>
           
           <div className="flex justify-center space-x-6">
             {socialLinks.map((link) => {
@@ -84,7 +70,7 @@ const ContactSection = () => {
                   rel="noopener noreferrer"
                   className="p-4 rounded-full bg-muted/20 text-foreground/70 hover:text-primary hover:bg-muted/40 transition-all duration-300
                             hover:shadow-[0_0_15px_rgba(0,245,255,0.2)] transform hover:scale-110"
-                  aria-label={link.ariaLabel}
+                  aria-label={link.name}
                 >
                   <Icon className="h-5 w-5" />
                 </a>

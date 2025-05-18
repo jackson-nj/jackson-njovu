@@ -1,23 +1,38 @@
-
-import { clsx, type ClassValue } from "clsx"
+import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Button animation utilities
+export function constrainNumber(num: number, min: number, max: number): number {
+  return Math.min(Math.max(num, min), max);
+}
+
+export function formatDate(input: Date | string): string {
+  const date = new Date(input)
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  })
+}
+
+/**
+ * Button animation variants
+ */
 export const buttonVariants = {
-  shine: "relative overflow-hidden after:absolute after:inset-0 after:translate-x-[-100%] after:bg-gradient-to-r after:from-transparent after:via-white/20 after:to-transparent hover:after:translate-x-[100%] after:transition-transform after:duration-1000",
-  float: "transition-transform hover:-translate-y-1 duration-300 ease-out",
-  scale: "transition-transform hover:scale-105 duration-300 ease-out",
-  glow: "transition-shadow hover:shadow-[0_0_15px_theme(colors.primary.DEFAULT)] duration-300 ease-out"
-}
+  shine: "shine relative overflow-hidden after:absolute after:inset-0 after:translate-x-[-100%] after:bg-white/25 after:transition after:duration-500 hover:after:translate-x-[100%]",
+  glow: "hover:shadow-[0_0_15px_rgba(0,245,255,0.5)] transition-shadow duration-300",
+  float: "hover:translate-y-[-3px] transition-transform duration-300",
+  pop: "active:scale-95 transition-transform duration-200"
+};
 
-// Text animation utilities
+/**
+ * Text animation variants
+ */
 export const textAnimationVariants = {
-  glow: "transition-all duration-300 hover:text-glow",
-  typewriter: "border-r-2 border-primary animate-typewriter overflow-hidden whitespace-nowrap",
-  gradient: "bg-clip-text text-transparent bg-gradient-to-r from-primary via-white to-primary-foreground animate-gradient-x bg-[length:200%_100%]"
-}
-
+  glow: "hover:text-shadow-[0_0_15px_rgba(0,245,255,0.8)] transition-all duration-300",
+  float: "hover:translate-y-[-2px] transition-transform duration-300",
+  type: "overflow-hidden whitespace-nowrap border-r-4 border-primary animate-typing"
+};

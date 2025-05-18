@@ -48,7 +48,8 @@ export const buttonVariants = {
   shine: "shine relative overflow-hidden after:absolute after:inset-0 after:translate-x-[-100%] after:bg-white/30 after:transition after:duration-500 hover:after:translate-x-[100%]",
   glow: "hover:shadow-[0_0_20px_rgba(0,245,255,0.6)] transition-shadow duration-300",
   float: "hover:translate-y-[-4px] transition-transform duration-300",
-  pop: "active:scale-95 transition-transform duration-200"
+  pop: "active:scale-95 transition-transform duration-200",
+  cosmic: "relative overflow-hidden bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-size-200 hover:bg-pos-100 transition-all duration-500"
 };
 
 /**
@@ -57,5 +58,40 @@ export const buttonVariants = {
 export const textAnimationVariants = {
   glow: "hover:text-shadow-[0_0_20px_rgba(0,245,255,0.9)] transition-all duration-300",
   float: "hover:translate-y-[-3px] transition-transform duration-300",
-  type: "overflow-hidden whitespace-nowrap border-r-4 border-primary animate-typing"
+  type: "overflow-hidden whitespace-nowrap border-r-4 border-primary animate-typing",
+  cosmic: "bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 hover:bg-size-200 transition-all duration-500"
 };
+
+/**
+ * 3D scene animation variants
+ */
+export const sceneAnimationVariants = {
+  rotate: "animate-spin-slow",
+  float: "animate-float-3d",
+  pulse: "animate-pulse-subtle"
+};
+
+/**
+ * Generates a spiral position in 3D space
+ */
+export function generateSpiralPosition(index: number, total: number, radius: number, height: number): {x: number, y: number, z: number} {
+  const angle = (index / total) * Math.PI * 20;
+  const spiralRadius = (index / total) * radius;
+  
+  return {
+    x: Math.cos(angle) * spiralRadius,
+    y: ((index / total) * height) - height/2,
+    z: Math.sin(angle) * spiralRadius
+  };
+}
+
+/**
+ * Generates a color based on index position
+ */
+export function generateGalaxyColor(index: number, total: number): string {
+  const hue = (index / total) * 60 + 220; // Blue to purple range
+  const saturation = 70 + Math.random() * 30;
+  const lightness = 50 + Math.random() * 30;
+  
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
